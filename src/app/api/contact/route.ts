@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
         },
         body: JSON.stringify({
           from: process.env.CONTACT_FROM || "Snow Labs <noreply@snowlabs.co>",
-          to: process.env.CONTACT_EMAIL || "contact@snowlabs.co",
+          to: process.env.CONTACT_EMAIL || "snowlinelabs@gmail.com",
           subject: `Snow Labs Contact: ${name}`,
           text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
         }),

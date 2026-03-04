@@ -40,7 +40,7 @@ export default function About() {
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-ice-50 mb-6">
             Where Ideas
             <br />
-            Become <span className="text-ice-400">Reality</span>
+            Become <span className="text-forest-300">Reality</span>
           </h2>
           <p className="text-text-secondary text-lg max-w-3xl mb-16 leading-relaxed">
             Snow Labs is a creative software lab dedicated to turning ideas into

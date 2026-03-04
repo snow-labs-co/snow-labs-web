@@ -13,7 +13,7 @@ const steps = [
     title: "Prototype",
     code: "build.fast()",
     description:
-      "We move fast. Working prototypes emerge within days, not months. Modern frameworks and proven patterns get tangible results in your hands quickly.",
+      "We move fast. Working prototypes emerge within days, not months. We leverage the best tools available — including the latest AI tooling for agentic development — to compress iteration cycles and get tangible results in your hands quickly.",
   },
   {
     number: "03",
@@ -45,11 +45,13 @@ export default function Process() {
         <ScrollReveal>
           <p className="terminal-header mb-3">{"> our_process"}</p>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-ice-50 mb-6">
-            From Concept to <span className="text-ice-400">Code</span>
+            From Concept to <span className="text-forest-300">Code</span>
           </h2>
           <p className="text-text-secondary text-lg max-w-3xl mb-16 leading-relaxed">
             Speed matters. We prototype rapidly, iterate relentlessly, and ship
-            with confidence. Every project follows this rhythm.
+            with confidence. We leverage the best tools available — including
+            cutting-edge AI for agentic development — to move faster at every
+            step. Every project follows this rhythm.
           </p>
         </ScrollReveal>
 

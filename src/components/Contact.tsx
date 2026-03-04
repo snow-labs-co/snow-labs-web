@@ -45,7 +45,7 @@ export default function Contact() {
         <ScrollReveal>
           <p className="terminal-header mb-3">{"> contact"}</p>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-ice-50 mb-4">
-            Start a <span className="text-ice-400">Conversation</span>
+            Start a <span className="text-forest-300">Conversation</span>
           </h2>
           <p className="text-text-secondary text-lg mb-12 leading-relaxed">
             Have an idea? Let&apos;s talk about how we can bring it to life.
