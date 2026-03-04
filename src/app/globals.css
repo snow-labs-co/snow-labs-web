@@ -50,7 +50,7 @@
   --color-mountain-near: #0F1E26;
 
   /* ── Fonts ── */
-  --font-display: var(--font-syne), ui-sans-serif, sans-serif;
+  --font-display: var(--font-russo-one), ui-sans-serif, sans-serif;
   --font-body: var(--font-albert-sans), ui-sans-serif, sans-serif;
   --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
 }

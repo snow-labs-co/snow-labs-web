@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 
 const projects = [
@@ -17,7 +18,7 @@ const projects = [
       "Mobile-first responsive",
     ],
     color: "#D4956A",
-    image: "/projects/kismet.png",
+    image: "/projects/kismet-sneak-peak.png",
   },
   {
     name: "StatLine",
@@ -35,7 +36,7 @@ const projects = [
       "PDF & CSV export",
     ],
     color: "#38BDF8",
-    image: "/projects/statline.png",
+    image: "/projects/statbook-sneak-peak.png",
   },
   {
     name: "MyPace",
@@ -53,7 +54,7 @@ const projects = [
       "Offline-capable",
     ],
     color: "#34D399",
-    image: "/projects/mypace.png",
+    image: "/projects/mypace-sneak-peak.png",
   },
 ];
 
@@ -84,49 +85,32 @@ export default function Projects() {
           {projects.map((project, i) => (
             <ScrollReveal key={project.slug} delay={100}>
               <div
-                className={`glass-card overflow-hidden flex flex-col ${
+                className={`glass-card group overflow-hidden flex flex-col ${
                   i % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"
                 }`}
               >
                 {/* Image area */}
                 <div className="md:w-[45%] relative overflow-hidden bg-card-surface/50">
                   <div
-                    className="aspect-[16/10] flex items-center justify-center relative"
+                    className="aspect-[16/10] relative overflow-hidden"
                     style={{
                       background: `linear-gradient(135deg, ${project.color}08, ${project.color}04)`,
                     }}
                   >
-                    {/* Blueprint grid overlay */}
+                    <Image
+                      src={project.image}
+                      alt={`${project.name} screenshot`}
+                      fill
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                      sizes="(max-width: 768px) 100vw, 45vw"
+                    />
+                    {/* Subtle color-matched overlay at bottom for blending */}
                     <div
-                      className="absolute inset-0 opacity-[0.04]"
+                      className="absolute inset-x-0 bottom-0 h-12 pointer-events-none"
                       style={{
-                        backgroundImage: `
-                          linear-gradient(${project.color}40 1px, transparent 1px),
-                          linear-gradient(90deg, ${project.color}40 1px, transparent 1px)
-                        `,
-                        backgroundSize: "24px 24px",
+                        background: `linear-gradient(to top, ${project.color}18, transparent)`,
                       }}
                     />
-
-                    <div className="text-center p-8 relative z-10">
-                      <div
-                        className="w-20 h-20 rounded-2xl mx-auto mb-4 flex items-center justify-center"
-                        style={{
-                          background: `${project.color}15`,
-                          border: `1px solid ${project.color}30`,
-                        }}
-                      >
-                        <span
-                          className="font-display text-3xl font-bold"
-                          style={{ color: project.color }}
-                        >
-                          {project.name.charAt(0)}
-                        </span>
-                      </div>
-                      <p className="font-mono text-[10px] text-text-muted tracking-wider">
-                        [ screenshot placeholder ]
-                      </p>
-                    </div>
                   </div>
                 </div>
 

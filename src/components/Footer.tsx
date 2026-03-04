@@ -8,10 +8,10 @@ export default function Footer() {
           {/* Logo */}
           <a href="#" className="hover:opacity-80 transition-opacity">
             <Image
-              src="/snow-labs-logo.png"
+              src="/snow-labs-mark.png"
               alt="Snow Labs"
               width={120}
-              height={61}
+              height={44}
               className="object-contain"
             />
           </a>

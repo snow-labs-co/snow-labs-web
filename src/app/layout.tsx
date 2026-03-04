@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Syne, Albert_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Russo_One, Albert_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const syne = Syne({
+const russoOne = Russo_One({
+  weight: "400",
   subsets: ["latin"],
-  variable: "--font-syne",
+  variable: "--font-russo-one",
   display: "swap",
 });
 
@@ -35,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${syne.variable} ${albertSans.variable} ${ibmPlexMono.variable} antialiased`}
+        className={`${russoOne.variable} ${albertSans.variable} ${ibmPlexMono.variable} antialiased`}
       >
         {children}
       </body>
