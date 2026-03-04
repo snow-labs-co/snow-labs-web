@@ -35,7 +35,7 @@ export default function Navigation() {
             src="/snow-labs-logo-only.png"
             alt="Snow Labs"
             width={80}
-            height={45}
+            height={46}
             className="object-contain"
             priority
           />

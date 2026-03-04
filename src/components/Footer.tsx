@@ -11,7 +11,7 @@ export default function Footer() {
               src="/snow-labs-logo-only.png"
               alt="Snow Labs"
               width={80}
-              height={45}
+              height={46}
               className="object-contain"
             />
             <div className="flex flex-col leading-none">
