@@ -6,32 +6,48 @@
    ────────────────────────────────────────────── */
 
 @theme {
-  /* ── Colors ── */
-  --color-midnight: #060B14;
-  --color-deep-navy: #0A0F1A;
-  --color-dark-surface: #111827;
-  --color-card-surface: #1A2332;
-  --color-card-border: #243044;
+  /* ── Colors — derived from Snow Labs logo palette ── */
+  --color-midnight: #050D14;
+  --color-deep-navy: #071219;
+  --color-dark-surface: #0D1E2D;
+  --color-card-surface: #122334;
+  --color-card-border: #1B3654;
 
-  --color-ice-50: #F0F9FF;
-  --color-ice-100: #E0F2FE;
-  --color-ice-200: #BAE6FD;
-  --color-ice-300: #7DD3FC;
-  --color-ice-400: #38BDF8;
-  --color-ice-500: #0EA5E9;
+  /* Brand teal — "BUILD · PROTOTYPE · SHIP" text from logo */
+  --color-ice-50: #EEF8FB;
+  --color-ice-100: #D4EEF5;
+  --color-ice-200: #A8DAEB;
+  --color-ice-300: #7EC8DA;
+  --color-ice-400: #4AB3CC;
+  --color-ice-500: #2B8FAD;
 
-  --color-cyan-400: #22D3EE;
-  --color-cyan-500: #06B6D4;
+  --color-cyan-400: #4AB3CC;
+  --color-cyan-500: #2B8FAD;
 
-  --color-terminal: #34D399;
+  /* Forest green — mountain body from logo */
+  --color-forest-400: #5A8F50;
+  --color-forest-500: #3F6B38;
 
-  --color-text-primary: #E2E8F0;
-  --color-text-secondary: #94A3B8;
-  --color-text-muted: #64748B;
+  /* Cabin amber — warm light from logo */
+  --color-amber: #EDA020;
 
-  --color-mountain-far: #1E293B;
-  --color-mountain-mid: #162032;
-  --color-mountain-near: #0F172A;
+  /* Cream — logo bottom panel */
+  --color-cream: #F0E9D5;
+
+  /* Sky steel — logo sky background */
+  --color-sky: #2C6D8C;
+
+  /* Terminal green stays for code UI */
+  --color-terminal: #3DB87A;
+
+  --color-text-primary: #E8F2F5;
+  --color-text-secondary: #8AAEBB;
+  --color-text-muted: #527080;
+
+  /* Mountain SVG colors match logo mountains */
+  --color-mountain-far: #1A3040;
+  --color-mountain-mid: #1A3028;
+  --color-mountain-near: #0F1E26;
 
   /* ── Fonts ── */
   --font-display: var(--font-syne), ui-sans-serif, sans-serif;
@@ -103,24 +119,24 @@ body {
 /* ── Glass Morphism ── */
 
 .glass-card {
-  background: rgba(26, 35, 50, 0.6);
+  background: rgba(18, 35, 52, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(74, 179, 204, 0.1);
   border-radius: 16px;
   transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(56, 189, 248, 0.25);
-  background: rgba(26, 35, 50, 0.8);
-  box-shadow: 0 0 40px -10px rgba(56, 189, 248, 0.12);
+  border-color: rgba(74, 179, 204, 0.25);
+  background: rgba(18, 35, 52, 0.8);
+  box-shadow: 0 0 40px -10px rgba(74, 179, 204, 0.12);
 }
 
 /* ── Dot Grid ── */
 
 .dot-grid {
-  background-image: radial-gradient(circle, rgba(56, 189, 248, 0.07) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(74, 179, 204, 0.07) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
@@ -147,7 +163,7 @@ body {
   content: '';
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(74, 179, 204, 0.15), transparent);
 }
 
 .section-divider .node {
@@ -155,7 +171,7 @@ body {
   height: 6px;
   border-radius: 50%;
   background: var(--color-ice-400);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 12px rgba(74, 179, 204, 0.4);
   animation: glow-pulse 3s ease-in-out infinite;
 }
 

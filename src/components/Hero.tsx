@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import SnowParticles from "./SnowParticles";
 
 export default function Hero() {
@@ -65,16 +66,21 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        <p className="font-mono text-terminal text-xs sm:text-sm mb-6 tracking-[0.2em]">
+        <p className="font-mono text-terminal text-xs sm:text-sm mb-8 tracking-[0.2em]">
           {"// creative_software_lab"}
         </p>
 
-        <h1 className="font-display font-extrabold text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight text-ice-50 mb-4 leading-[0.9]">
-          SNOW
-          <span className="text-ice-400">LABS</span>
-        </h1>
-
-        <div className="w-16 h-[2px] bg-gradient-to-r from-transparent via-ice-400 to-transparent mx-auto mb-6" />
+        {/* Logo as hero centerpiece */}
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/snow-labs-logo.png"
+            alt="Snow Labs — Build · Prototype · Ship"
+            width={420}
+            height={214}
+            className="w-64 sm:w-80 md:w-96 lg:w-[420px] object-contain drop-shadow-[0_8px_32px_rgba(74,179,204,0.15)]"
+            priority
+          />
+        </div>
 
         <p className="font-body text-base sm:text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
           Turning ideas into reality. We build, we experiment, we ship.
@@ -113,7 +119,7 @@ export default function Hero() {
         >
           <path
             d="M0,300 C100,300 180,170 300,210 C420,250 480,110 600,170 C720,230 800,90 960,150 C1120,210 1200,130 1320,170 C1380,190 1420,240 1440,210 L1440,300 Z"
-            fill="#1E293B"
+            fill="#1A3040"
           />
         </svg>
 
@@ -127,7 +133,7 @@ export default function Hero() {
         >
           <path
             d="M0,300 C60,300 100,210 200,230 C300,250 380,130 500,190 C620,250 680,150 820,200 C960,250 1020,120 1160,180 C1300,240 1360,170 1440,210 L1440,300 Z"
-            fill="#162032"
+            fill="#1A3028"
           />
         </svg>
 
@@ -141,7 +147,7 @@ export default function Hero() {
         >
           <path
             d="M0,300 C80,300 120,240 220,255 C320,270 380,195 500,225 C620,255 700,195 840,225 C980,255 1040,205 1180,230 C1320,255 1380,225 1440,245 L1440,300 Z"
-            fill="#0F172A"
+            fill="#0F1E26"
           />
         </svg>
       </div>

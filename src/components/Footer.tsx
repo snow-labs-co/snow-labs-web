@@ -1,17 +1,20 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="border-t border-card-border/30 bg-midnight">
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo + tagline */}
-          <div className="flex items-center gap-4">
-            <span className="font-display font-bold text-lg text-ice-50 tracking-wider">
-              SNOW<span className="text-ice-400">LABS</span>
-            </span>
-            <span className="hidden sm:inline font-mono text-[10px] text-text-muted tracking-wider">
-              // creative software lab
-            </span>
-          </div>
+          {/* Logo */}
+          <a href="#" className="hover:opacity-80 transition-opacity">
+            <Image
+              src="/snow-labs-logo.png"
+              alt="Snow Labs"
+              width={120}
+              height={61}
+              className="object-contain"
+            />
+          </a>
 
           {/* Links */}
           <div className="flex items-center gap-6">
@@ -35,7 +38,7 @@ export default function Footer() {
 
         <div className="mt-8 pt-6 border-t border-card-border/20 text-center">
           <p className="font-mono text-[10px] text-text-muted tracking-wider">
-            © {new Date().getFullYear()} Snow Labs. All rights reserved.
+            © {new Date().getFullYear()} Snow Labs · Colorado Springs, CO
           </p>
         </div>
       </div>

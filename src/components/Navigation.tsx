@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const links = [
   { href: "#about", label: "About" },
@@ -29,12 +30,15 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a
-          href="#"
-          className="font-display font-bold text-xl tracking-wider text-ice-50 hover:text-ice-300 transition-colors"
-        >
-          SNOW
-          <span className="text-ice-400">LABS</span>
+        <a href="#" className="flex items-center hover:opacity-80 transition-opacity">
+          <Image
+            src="/snow-labs-logo.png"
+            alt="Snow Labs"
+            width={110}
+            height={56}
+            className="object-contain"
+            priority
+          />
         </a>
 
         {/* Desktop links */}
