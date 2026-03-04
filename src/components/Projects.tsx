@@ -94,21 +94,21 @@ export default function Projects() {
                   <div
                     className="aspect-[16/10] relative overflow-hidden"
                     style={{
-                      background: `linear-gradient(135deg, ${project.color}08, ${project.color}04)`,
+                      background: `linear-gradient(135deg, ${project.color}06, ${project.color}03)`,
                     }}
                   >
                     <Image
                       src={project.image}
                       alt={`${project.name} screenshot`}
                       fill
-                      className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                      className="object-contain object-top p-3"
                       sizes="(max-width: 768px) 100vw, 45vw"
                     />
                     {/* Subtle color-matched overlay at bottom for blending */}
                     <div
-                      className="absolute inset-x-0 bottom-0 h-12 pointer-events-none"
+                      className="absolute inset-x-0 bottom-0 h-8 pointer-events-none"
                       style={{
-                        background: `linear-gradient(to top, ${project.color}18, transparent)`,
+                        background: `linear-gradient(to top, ${project.color}12, transparent)`,
                       }}
                     />
                   </div>

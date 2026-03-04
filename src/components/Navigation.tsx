@@ -32,10 +32,10 @@ export default function Navigation() {
         {/* Logo */}
         <a href="#" className="flex items-center hover:opacity-80 transition-opacity">
           <Image
-            src="/snow-labs-mark.png"
+            src="/snow-labs-logo-only.png"
             alt="Snow Labs"
-            width={110}
-            height={40}
+            width={80}
+            height={44}
             className="object-contain"
             priority
           />

@@ -73,11 +73,11 @@ export default function Hero() {
         {/* Logo as hero centerpiece */}
         <div className="flex justify-center mb-6">
           <Image
-            src="/snow-labs-mark.png"
+            src="/snow-labs-logo-only.png"
             alt="Snow Labs — Build · Prototype · Ship"
-            width={420}
-            height={154}
-            className="w-56 sm:w-72 md:w-[340px] lg:w-[420px] object-contain drop-shadow-[0_8px_32px_rgba(74,179,204,0.20)]"
+            width={320}
+            height={175}
+            className="w-48 sm:w-56 md:w-72 lg:w-80 object-contain drop-shadow-[0_8px_48px_rgba(74,179,204,0.25)]"
             priority
           />
         </div>
