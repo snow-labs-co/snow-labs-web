@@ -1,26 +1,203 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ──────────────────────────────────────────────
+   ALPINE LAB — Design System
+   Snow/mountain landscape × software dev lab
+   ────────────────────────────────────────────── */
+
+@theme {
+  /* ── Colors ── */
+  --color-midnight: #060B14;
+  --color-deep-navy: #0A0F1A;
+  --color-dark-surface: #111827;
+  --color-card-surface: #1A2332;
+  --color-card-border: #243044;
+
+  --color-ice-50: #F0F9FF;
+  --color-ice-100: #E0F2FE;
+  --color-ice-200: #BAE6FD;
+  --color-ice-300: #7DD3FC;
+  --color-ice-400: #38BDF8;
+  --color-ice-500: #0EA5E9;
+
+  --color-cyan-400: #22D3EE;
+  --color-cyan-500: #06B6D4;
+
+  --color-terminal: #34D399;
+
+  --color-text-primary: #E2E8F0;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #64748B;
+
+  --color-mountain-far: #1E293B;
+  --color-mountain-mid: #162032;
+  --color-mountain-near: #0F172A;
+
+  /* ── Fonts ── */
+  --font-display: var(--font-syne), ui-sans-serif, sans-serif;
+  --font-body: var(--font-albert-sans), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Keyframes ── */
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes snowfall {
+  0% { transform: translateY(-5vh); opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 0.6; }
+  100% { transform: translateY(105vh); opacity: 0; }
+}
+
+@keyframes snow-drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(25px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes blink-caret {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: var(--color-terminal); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-12px) rotate(-8deg); }
+}
+
+/* ── Base ── */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-deep-navy);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+}
+
+/* ── Scroll Reveal ── */
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Glass Morphism ── */
+
+.glass-card {
+  background: rgba(26, 35, 50, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.1);
+  border-radius: 16px;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(56, 189, 248, 0.25);
+  background: rgba(26, 35, 50, 0.8);
+  box-shadow: 0 0 40px -10px rgba(56, 189, 248, 0.12);
+}
+
+/* ── Dot Grid ── */
+
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(56, 189, 248, 0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ── Terminal Header ── */
+
+.terminal-header {
+  font-family: var(--font-mono);
+  color: var(--color-terminal);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+/* ── Section Divider ── */
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1.5rem;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.15), transparent);
+}
+
+.section-divider .node {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-ice-400);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* ── Snow Particle ── */
+
+.snow-fall-wrapper {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+  animation: snowfall linear infinite;
+}
+
+.snow-particle {
+  display: block;
+  background: white;
+  border-radius: 50%;
+  will-change: transform;
+  animation: snow-drift ease-in-out infinite;
+}
+
+/* ── Grain Overlay ── */
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Custom Scrollbar ── */
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-deep-navy); }
+::-webkit-scrollbar-thumb { background: var(--color-card-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ice-400); }
+
+/* ── Selection ── */
+
+::selection {
+  background: rgba(56, 189, 248, 0.3);
+  color: var(--color-ice-50);
 }
