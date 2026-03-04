@@ -30,7 +30,7 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center hover:opacity-80 transition-opacity">
+        <a href="#" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <Image
             src="/snow-labs-logo-only.png"
             alt="Snow Labs"
@@ -39,6 +39,10 @@ export default function Navigation() {
             className="object-contain"
             priority
           />
+          <div className="flex flex-col leading-none">
+            <span className="font-display text-sm tracking-widest text-ice-50 uppercase">Snow Labs</span>
+            <span className="font-mono text-[9px] tracking-[0.18em] text-ice-400/70 uppercase mt-0.5">Build · Prototype · Ship</span>
+          </div>
         </a>
 
         {/* Desktop links */}

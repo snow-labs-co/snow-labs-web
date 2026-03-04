@@ -71,7 +71,7 @@ export default function Hero() {
         </p>
 
         {/* Logo as hero centerpiece */}
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-4">
           <Image
             src="/snow-labs-logo-only.png"
             alt="Snow Labs — Build · Prototype · Ship"
@@ -81,6 +81,14 @@ export default function Hero() {
             priority
           />
         </div>
+
+        {/* Company name */}
+        <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-ice-50 tracking-widest uppercase mb-2">
+          Snow Labs
+        </h1>
+        <p className="font-mono text-xs sm:text-sm tracking-[0.3em] text-ice-400 uppercase mb-8">
+          Build · Prototype · Ship
+        </p>
 
         <p className="font-body text-base sm:text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
           Turning ideas into reality. We build, we experiment, we ship.

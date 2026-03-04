@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
-          <a href="#" className="hover:opacity-80 transition-opacity">
+          <a href="#" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <Image
               src="/snow-labs-logo-only.png"
               alt="Snow Labs"
@@ -14,6 +14,10 @@ export default function Footer() {
               height={44}
               className="object-contain"
             />
+            <div className="flex flex-col leading-none">
+              <span className="font-display text-sm tracking-widest text-ice-50 uppercase">Snow Labs</span>
+              <span className="font-mono text-[9px] tracking-[0.18em] text-ice-400/70 uppercase mt-0.5">Colorado Springs, CO</span>
+            </div>
           </a>
 
           {/* Links */}
