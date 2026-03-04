@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import SnowParticles from "./SnowParticles";
+import CloudVeil from "./CloudVeil";
 
 export default function Hero() {
   const layer1 = useRef<SVGSVGElement>(null);
@@ -63,6 +64,9 @@ export default function Hero() {
 
       {/* Snow */}
       <SnowParticles />
+
+      {/* Cloud veil — hides snow particles appearing at top edge */}
+      <CloudVeil />
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
