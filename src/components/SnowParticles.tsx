@@ -17,15 +17,18 @@ export default function SnowParticles({ count = 60 }: { count?: number }) {
 
   useEffect(() => {
     setParticles(
-      Array.from({ length: count }, (_, i) => ({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        size: 2 + Math.random() * 3,
-        fallDuration: 12 + Math.random() * 18,
-        driftDuration: 3 + Math.random() * 6,
-        delay: Math.random() * 20,
-        opacity: 0.15 + Math.random() * 0.45,
-      }))
+      Array.from({ length: count }, (_, i) => {
+        const fallDuration = 12 + Math.random() * 18;
+        return {
+          id: i,
+          left: `${Math.random() * 100}%`,
+          size: 3 + Math.random() * 4,
+          fallDuration,
+          driftDuration: 3 + Math.random() * 6,
+          delay: -(Math.random() * fallDuration),
+          opacity: 0.15 + Math.random() * 0.45,
+        };
+      })
     );
   }, [count]);
 

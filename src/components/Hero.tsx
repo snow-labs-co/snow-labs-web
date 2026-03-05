@@ -1,16 +1,48 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import SnowParticles from "./SnowParticles";
-import CloudVeil from "./CloudVeil";
+
+interface Star {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  opacity: number;
+  twinkleDuration: number;
+  delay: number;
+}
 
 export default function Hero() {
+  const [stars, setStars] = useState<Star[]>([]);
+
+  const moonRef = useRef<HTMLDivElement>(null);
+  const auroraRef = useRef<HTMLDivElement>(null);
   const layer0 = useRef<SVGSVGElement>(null);
   const layer1 = useRef<SVGSVGElement>(null);
   const layer2 = useRef<SVGSVGElement>(null);
   const layer3 = useRef<SVGSVGElement>(null);
+  const layer4 = useRef<SVGSVGElement>(null);
+  const fogRef = useRef<HTMLDivElement>(null);
+  const cabinRef = useRef<HTMLDivElement>(null);
 
+  /* ── Generate stars client-side ── */
+  useEffect(() => {
+    setStars(
+      Array.from({ length: 100 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 55,
+        size: 1 + Math.random() * 1.5,
+        opacity: 0.3 + Math.random() * 0.5,
+        twinkleDuration: 3 + Math.random() * 5,
+        delay: Math.random() * 8,
+      }))
+    );
+  }, []);
+
+  /* ── Parallax ── */
   useEffect(() => {
     let ticking = false;
     const onScroll = () => {
@@ -18,10 +50,24 @@ export default function Hero() {
       ticking = true;
       requestAnimationFrame(() => {
         const y = window.scrollY;
-        if (layer0.current) layer0.current.style.transform = `translateY(${y * 0.04}px)`;
-        if (layer1.current) layer1.current.style.transform = `translateY(${y * 0.09}px)`;
-        if (layer2.current) layer2.current.style.transform = `translateY(${y * 0.18}px)`;
-        if (layer3.current) layer3.current.style.transform = `translateY(${y * 0.30}px)`;
+        if (moonRef.current)
+          moonRef.current.style.transform = `translateY(${y * 0.05}px)`;
+        if (auroraRef.current)
+          auroraRef.current.style.transform = `translateY(${y * 0.03}px)`;
+        if (layer0.current)
+          layer0.current.style.transform = `translateY(${y * 0.03}px)`;
+        if (layer1.current)
+          layer1.current.style.transform = `translateY(${y * 0.07}px)`;
+        if (layer2.current)
+          layer2.current.style.transform = `translateY(${y * 0.13}px)`;
+        if (layer3.current)
+          layer3.current.style.transform = `translateY(${y * 0.21}px)`;
+        if (layer4.current)
+          layer4.current.style.transform = `translateY(${y * 0.30}px)`;
+        if (fogRef.current)
+          fogRef.current.style.transform = `translateY(${y * 0.15}px)`;
+        if (cabinRef.current)
+          cabinRef.current.style.transform = `translate(-50%,0) translateY(${y * 0.25}px)`;
         ticking = false;
       });
     };
@@ -31,16 +77,84 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen overflow-hidden flex items-center justify-center">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-midnight via-deep-navy to-mountain-near" />
+      {/* ── Deep sky gradient ── */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#020810] via-[#06152A] to-[#0C2438]" />
 
-      {/* Dot grid */}
-      <div className="absolute inset-0 dot-grid opacity-30" />
+      {/* ── Starfield ── */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-[2]">
+        {stars.map((s) => (
+          <div
+            key={s.id}
+            className="absolute rounded-full bg-white star-shimmer"
+            style={{
+              left: `${s.x}%`,
+              top: `${s.y}%`,
+              width: s.size,
+              height: s.size,
+              "--star-base": s.opacity,
+              animationDuration: `${s.twinkleDuration}s`,
+              animationDelay: `${s.delay}s`,
+            } as React.CSSProperties}
+          />
+        ))}
+      </div>
 
-      {/* Radial glow */}
-      <div className="absolute top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-ice-400/[0.04] rounded-full blur-[100px]" />
+      {/* ── Moon ── */}
+      <div ref={moonRef} className="absolute top-[14%] left-[18%] will-change-transform">
+        <div className="relative">
+          {/* Wide atmospheric halo */}
+          <div
+            className="absolute rounded-full"
+            style={{
+              width: 320,
+              height: 320,
+              top: -148,
+              left: -148,
+              background:
+                "radial-gradient(circle, rgba(180,210,235,0.05) 0%, transparent 65%)",
+            }}
+          />
+          {/* Tight halo */}
+          <div
+            className="absolute rounded-full"
+            style={{
+              width: 120,
+              height: 120,
+              top: -48,
+              left: -48,
+              background:
+                "radial-gradient(circle, rgba(210,230,245,0.1) 0%, transparent 55%)",
+            }}
+          />
+          {/* Disc */}
+          <div
+            className="rounded-full"
+            style={{
+              width: 34,
+              height: 34,
+              background:
+                "radial-gradient(circle at 35% 35%, #F0F4F8, #C8D8E8)",
+              boxShadow:
+                "0 0 30px rgba(200,220,240,0.25), 0 0 60px rgba(200,220,240,0.1)",
+            }}
+          />
+        </div>
+      </div>
 
-      {/* Floating code snippet (lab motif) */}
+      {/* ── Aurora Borealis ── */}
+      <div
+        ref={auroraRef}
+        className="absolute inset-0 overflow-hidden pointer-events-none will-change-transform"
+      >
+        <div className="aurora-band aurora-band-1" />
+        <div className="aurora-band aurora-band-2" />
+        <div className="aurora-band aurora-band-3" />
+      </div>
+
+      {/* ── Dot grid ── */}
+      <div className="absolute inset-0 dot-grid opacity-15 z-[1]" />
+
+      {/* ── Floating code snippets (lab motif) ── */}
       <div
         className="absolute top-[15%] right-[8%] font-mono text-[11px] text-ice-400/[0.06] leading-relaxed hidden lg:block select-none pointer-events-none"
         style={{ animation: "float 8s ease-in-out infinite" }}
@@ -55,7 +169,7 @@ export default function Hero() {
       </div>
 
       <div
-        className="absolute bottom-[30%] left-[6%] font-mono text-[10px] text-terminal/[0.05] leading-relaxed hidden lg:block select-none pointer-events-none"
+        className="absolute bottom-[38%] left-[6%] font-mono text-[10px] text-terminal/[0.05] leading-relaxed hidden lg:block select-none pointer-events-none"
         style={{ animation: "float 10s ease-in-out infinite 2s" }}
       >
         <pre>{`> deploying to prod...
@@ -64,19 +178,21 @@ export default function Hero() {
 ✓ live in 2.3s`}</pre>
       </div>
 
-      {/* Snow */}
+      {/* ── Snow ── */}
       <SnowParticles />
 
-      {/* Cloud veil — hides snow particles appearing at top edge */}
-      <CloudVeil />
+      {/* ── Top edge fade (masks snow spawn) ── */}
+      <div
+        className="absolute top-0 left-0 right-0 h-[60px] pointer-events-none z-[6]"
+        style={{ background: "linear-gradient(to bottom, #020810 30%, transparent)" }}
+      />
 
-      {/* Content */}
+      {/* ── Content ── */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <p className="font-mono text-terminal text-xs sm:text-sm mb-8 tracking-[0.2em]">
           {"// creative_software_lab"}
         </p>
 
-        {/* Logo as hero centerpiece */}
         <div className="flex justify-center mb-4">
           <Image
             src="/snow-labs-logo-only.png"
@@ -88,7 +204,6 @@ export default function Hero() {
           />
         </div>
 
-        {/* Company name */}
         <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-ice-50 tracking-widest uppercase mb-2">
           Snow Labs
         </h1>
@@ -121,95 +236,180 @@ export default function Hero() {
         </a>
       </div>
 
-      {/* Mountain layers */}
-      <div className="absolute bottom-0 left-0 right-0 h-[280px] sm:h-[360px]">
-        {/* Alpenglow — moonlight glow above the ridgeline */}
+      {/* ══════════════════════════════════════════
+          MOUNTAIN SCENE
+          ══════════════════════════════════════════ */}
+      <div className="absolute bottom-0 left-0 right-0 h-[300px] sm:h-[380px] md:h-[420px]">
+        {/* Moonlight spill on peaks */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 75% 45% at 50% 58%, rgba(44,109,140,0.13) 0%, transparent 68%)",
+              "radial-gradient(ellipse 45% 55% at 18% 25%, rgba(180,210,235,0.04) 0%, transparent 70%)",
           }}
         />
 
-        {/* Layer 0 — ghost haze, barely-there atmospheric far range */}
+        {/* ── Layer 0 — Distant atmospheric haze ── */}
         <svg
           ref={layer0}
           className="absolute bottom-0 w-full will-change-transform"
-          viewBox="0 0 1440 300"
+          viewBox="0 0 1440 400"
           preserveAspectRatio="none"
           style={{ height: "100%" }}
         >
           <path
-            d="M0,300 L0,232 L88,216 L168,202 L238,194 L298,198 L356,174 L410,158 L466,168 L520,142 L566,122 L604,135 L640,106 L676,89 L708,102 L742,74 L775,88 L808,69 L840,82 L872,66 L904,84 L948,72 L998,92 L1052,76 L1106,98 L1160,82 L1216,104 L1272,89 L1332,112 L1392,96 L1440,116 L1440,300 Z"
-            fill="#1C3B52"
-            fillOpacity="0.42"
+            d="M0,400 L0,295 Q120,278 240,288 Q360,265 480,252 Q600,240 660,220 Q720,200 780,215 Q840,230 960,218 Q1080,206 1200,222 Q1320,238 1440,225 L1440,400Z"
+            fill="#162A3E"
+            fillOpacity="0.35"
           />
         </svg>
 
-        {/* Layer 1 — far dramatic range with dominant peaks */}
+        {/* ── Layer 1 — Far dramatic peaks ── */}
         <svg
           ref={layer1}
           className="absolute bottom-0 w-full will-change-transform"
-          viewBox="0 0 1440 300"
+          viewBox="0 0 1440 400"
           preserveAspectRatio="none"
-          style={{ height: "100%" }}
+          style={{ height: "95%" }}
         >
           <defs>
-            <linearGradient id="grad-far" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#243F52" />
-              <stop offset="100%" stopColor="#1A3244" />
+            <linearGradient id="peak-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#1E3A52" />
+              <stop offset="100%" stopColor="#152C42" />
             </linearGradient>
           </defs>
+          {/* Main range — dramatic central peak cluster */}
           <path
-            d="M0,300 L0,248 L54,238 L114,226 L174,236 L234,208 L290,190 L347,202 L404,176 L459,156 L503,168 L547,130 L579,112 L611,127 L645,91 L677,71 L709,85 L741,54 L769,69 L797,47 L825,63 L857,50 L889,72 L931,58 L981,78 L1037,62 L1089,84 L1141,66 L1195,89 L1254,72 L1314,94 L1374,78 L1440,99 L1440,300 Z"
-            fill="url(#grad-far)"
+            d="M0,400 L0,305 L45,298 L95,285 L145,275 L195,282 L245,260 L295,242 L335,255 L375,228 L410,210 L440,222 L475,192 L510,170 L535,182 L570,148 L598,125 L620,138 L650,108 L678,85 L698,98 L722,68 L742,52 L758,62 L778,42 L795,55 L818,72 L842,62 L868,78 L895,92 L925,82 L958,98 L995,108 L1035,98 L1072,112 L1110,125 L1150,115 L1195,130 L1240,142 L1285,132 L1330,148 L1380,155 L1440,162 L1440,400Z"
+            fill="url(#peak-grad)"
           />
-          {/* Snow caps on 4 dominant peaks */}
-          <g fill="#D4EEF5" fillOpacity="0.42">
-            <polygon points="797,47 782,70 812,70" />
-            <polygon points="857,50 842,73 872,73" />
-            <polygon points="741,54 726,77 756,77" />
-            <polygon points="931,58 916,81 946,81" />
-          </g>
         </svg>
 
-        {/* Layer 2 — mid range, forest-green tinted */}
+        {/* ── Atmospheric fog between ranges ── */}
+        <div
+          ref={fogRef}
+          className="absolute left-0 right-0 pointer-events-none will-change-transform hero-fog"
+          style={{ bottom: "32%", height: "18%" }}
+        />
+
+        {/* ── Layer 2 — Mid-range, forest green ── */}
         <svg
           ref={layer2}
           className="absolute bottom-0 w-full will-change-transform"
-          viewBox="0 0 1440 300"
-          preserveAspectRatio="none"
-          style={{ height: "88%" }}
-        >
-          <defs>
-            <linearGradient id="grad-mid" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#1C3228" />
-              <stop offset="100%" stopColor="#152020" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M0,300 L0,268 L60,258 L121,248 L183,256 L246,238 L306,225 L363,235 L420,215 L477,200 L523,211 L569,189 L614,173 L651,185 L689,163 L725,149 L761,163 L799,146 L841,159 L887,143 L943,159 L1001,143 L1059,159 L1114,169 L1171,151 L1229,171 L1287,156 L1347,173 L1440,183 L1440,300 Z"
-            fill="url(#grad-mid)"
-          />
-        </svg>
-
-        {/* Layer 3 — near foothills, darkest */}
-        <svg
-          ref={layer3}
-          className="absolute bottom-0 w-full will-change-transform"
-          viewBox="0 0 1440 300"
+          viewBox="0 0 1440 400"
           preserveAspectRatio="none"
           style={{ height: "72%" }}
         >
+          <defs>
+            <linearGradient id="forest-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#1A3228" />
+              <stop offset="100%" stopColor="#12241E" />
+            </linearGradient>
+          </defs>
           <path
-            d="M0,300 L0,258 L70,252 L141,244 L214,252 L288,236 L361,243 L434,226 L507,233 L580,219 L654,226 L727,211 L801,219 L874,206 L947,213 L1021,201 L1094,209 L1168,197 L1241,206 L1315,195 L1440,205 L1440,300 Z"
-            fill="#0E1C16"
+            d="M0,400 L0,285 L40,278 L82,268 L128,258 L172,265 L218,248 L268,235 L318,245 L368,228 L418,215 L462,225 L508,208 L558,195 L608,205 L658,188 L708,178 L752,188 L798,175 L848,168 L898,178 L948,165 L998,175 L1048,162 L1098,172 L1148,180 L1198,168 L1248,182 L1298,188 L1348,178 L1398,190 L1440,195 L1440,400Z"
+            fill="url(#forest-grad)"
           />
         </svg>
+
+        {/* ── Layer 3 — Near foothills, dense treeline ── */}
+        <svg
+          ref={layer3}
+          className="absolute bottom-0 w-full will-change-transform"
+          viewBox="0 0 1440 400"
+          preserveAspectRatio="none"
+          style={{ height: "48%" }}
+        >
+          <defs>
+            <linearGradient id="hill-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#0E1C16" />
+              <stop offset="100%" stopColor="#091410" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M0,400 L0,295 L80,288 L160,278 L240,285 L320,272 L400,278 L480,265 L560,272 L640,260 L720,268 L800,255 L880,262 L960,250 L1040,258 L1120,248 L1200,255 L1280,245 L1360,252 L1440,248 L1440,400Z"
+            fill="url(#hill-grad)"
+          />
+        </svg>
+
+        {/* ── Layer 4 — Valley floor ── */}
+        <svg
+          ref={layer4}
+          className="absolute bottom-0 w-full will-change-transform"
+          viewBox="0 0 1440 400"
+          preserveAspectRatio="none"
+          style={{ height: "28%" }}
+        >
+          <path
+            d="M0,400 L0,348 L120,342 L240,350 L360,340 L480,346 L600,336 L720,342 L840,332 L960,340 L1080,330 L1200,338 L1320,332 L1440,340 L1440,400Z"
+            fill="#060E0A"
+          />
+        </svg>
+
+        {/* ── Cabin in the valley ── */}
+        <div
+          ref={cabinRef}
+          className="absolute bottom-[9%] left-[52%] z-[2]"
+          style={{ transform: "translate(-50%,0)" }}
+        >
+          {/* Wide ambient glow */}
+          <div
+            className="absolute rounded-full"
+            style={{
+              width: 160,
+              height: 100,
+              top: -40,
+              left: -72,
+              background:
+                "radial-gradient(ellipse, rgba(237,160,32,0.05) 0%, transparent 70%)",
+            }}
+          />
+          {/* Tight warm glow */}
+          <div
+            className="absolute rounded-full"
+            style={{
+              width: 50,
+              height: 35,
+              top: -10,
+              left: -18,
+              background:
+                "radial-gradient(ellipse, rgba(237,160,32,0.12) 0%, transparent 60%)",
+            }}
+          />
+          <div className="relative">
+            {/* Roof */}
+            <svg
+              width="18"
+              height="9"
+              viewBox="0 0 18 9"
+              className="block mx-auto"
+            >
+              <polygon points="9,0 0,9 18,9" fill="#0A1612" />
+            </svg>
+            {/* Walls + window */}
+            <div className="w-[16px] h-[8px] mx-auto bg-[#0D1914] flex items-center justify-center">
+              <div
+                className="w-[3px] h-[3px] rounded-[0.5px]"
+                style={{
+                  backgroundColor: "rgba(237,160,32,0.75)",
+                  boxShadow:
+                    "0 0 4px rgba(237,160,32,0.6), 0 0 12px rgba(237,160,32,0.25)",
+                }}
+              />
+            </div>
+            {/* Chimney */}
+            <div className="absolute -top-[5px] right-[2px] w-[3px] h-[7px] bg-[#0A1612]" />
+            {/* Chimney smoke */}
+            <div className="absolute -top-[12px] right-[2px] w-[3px] h-[3px]">
+              <div className="chimney-smoke" />
+              <div className="chimney-smoke" style={{ animationDelay: "1.5s" }} />
+              <div className="chimney-smoke" style={{ animationDelay: "3s" }} />
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* ── Scroll indicator ── */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce">
         <span className="font-mono text-[10px] text-text-muted tracking-widest uppercase">
           scroll
