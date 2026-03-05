@@ -6,6 +6,7 @@ import SnowParticles from "./SnowParticles";
 import CloudVeil from "./CloudVeil";
 
 export default function Hero() {
+  const layer0 = useRef<SVGSVGElement>(null);
   const layer1 = useRef<SVGSVGElement>(null);
   const layer2 = useRef<SVGSVGElement>(null);
   const layer3 = useRef<SVGSVGElement>(null);
@@ -17,9 +18,10 @@ export default function Hero() {
       ticking = true;
       requestAnimationFrame(() => {
         const y = window.scrollY;
-        if (layer1.current) layer1.current.style.transform = `translateY(${y * 0.08}px)`;
-        if (layer2.current) layer2.current.style.transform = `translateY(${y * 0.16}px)`;
-        if (layer3.current) layer3.current.style.transform = `translateY(${y * 0.28}px)`;
+        if (layer0.current) layer0.current.style.transform = `translateY(${y * 0.04}px)`;
+        if (layer1.current) layer1.current.style.transform = `translateY(${y * 0.09}px)`;
+        if (layer2.current) layer2.current.style.transform = `translateY(${y * 0.18}px)`;
+        if (layer3.current) layer3.current.style.transform = `translateY(${y * 0.30}px)`;
         ticking = false;
       });
     };
@@ -120,8 +122,32 @@ export default function Hero() {
       </div>
 
       {/* Mountain layers */}
-      <div className="absolute bottom-0 left-0 right-0 h-[250px] sm:h-[300px]">
-        {/* Layer 1 — furthest, lightest */}
+      <div className="absolute bottom-0 left-0 right-0 h-[280px] sm:h-[360px]">
+        {/* Alpenglow — moonlight glow above the ridgeline */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 75% 45% at 50% 58%, rgba(44,109,140,0.13) 0%, transparent 68%)",
+          }}
+        />
+
+        {/* Layer 0 — ghost haze, barely-there atmospheric far range */}
+        <svg
+          ref={layer0}
+          className="absolute bottom-0 w-full will-change-transform"
+          viewBox="0 0 1440 300"
+          preserveAspectRatio="none"
+          style={{ height: "100%" }}
+        >
+          <path
+            d="M0,300 L0,232 L88,216 L168,202 L238,194 L298,198 L356,174 L410,158 L466,168 L520,142 L566,122 L604,135 L640,106 L676,89 L708,102 L742,74 L775,88 L808,69 L840,82 L872,66 L904,84 L948,72 L998,92 L1052,76 L1106,98 L1160,82 L1216,104 L1272,89 L1332,112 L1392,96 L1440,116 L1440,300 Z"
+            fill="#1C3B52"
+            fillOpacity="0.42"
+          />
+        </svg>
+
+        {/* Layer 1 — far dramatic range with dominant peaks */}
         <svg
           ref={layer1}
           className="absolute bottom-0 w-full will-change-transform"
@@ -129,37 +155,56 @@ export default function Hero() {
           preserveAspectRatio="none"
           style={{ height: "100%" }}
         >
+          <defs>
+            <linearGradient id="grad-far" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#243F52" />
+              <stop offset="100%" stopColor="#1A3244" />
+            </linearGradient>
+          </defs>
           <path
-            d="M0,300 C100,300 180,170 300,210 C420,250 480,110 600,170 C720,230 800,90 960,150 C1120,210 1200,130 1320,170 C1380,190 1420,240 1440,210 L1440,300 Z"
-            fill="#1A3040"
+            d="M0,300 L0,248 L54,238 L114,226 L174,236 L234,208 L290,190 L347,202 L404,176 L459,156 L503,168 L547,130 L579,112 L611,127 L645,91 L677,71 L709,85 L741,54 L769,69 L797,47 L825,63 L857,50 L889,72 L931,58 L981,78 L1037,62 L1089,84 L1141,66 L1195,89 L1254,72 L1314,94 L1374,78 L1440,99 L1440,300 Z"
+            fill="url(#grad-far)"
           />
+          {/* Snow caps on 4 dominant peaks */}
+          <g fill="#D4EEF5" fillOpacity="0.42">
+            <polygon points="797,47 782,70 812,70" />
+            <polygon points="857,50 842,73 872,73" />
+            <polygon points="741,54 726,77 756,77" />
+            <polygon points="931,58 916,81 946,81" />
+          </g>
         </svg>
 
-        {/* Layer 2 — middle */}
+        {/* Layer 2 — mid range, forest-green tinted */}
         <svg
           ref={layer2}
           className="absolute bottom-0 w-full will-change-transform"
           viewBox="0 0 1440 300"
           preserveAspectRatio="none"
-          style={{ height: "90%" }}
+          style={{ height: "88%" }}
         >
+          <defs>
+            <linearGradient id="grad-mid" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#1C3228" />
+              <stop offset="100%" stopColor="#152020" />
+            </linearGradient>
+          </defs>
           <path
-            d="M0,300 C60,300 100,210 200,230 C300,250 380,130 500,190 C620,250 680,150 820,200 C960,250 1020,120 1160,180 C1300,240 1360,170 1440,210 L1440,300 Z"
-            fill="#1A3028"
+            d="M0,300 L0,268 L60,258 L121,248 L183,256 L246,238 L306,225 L363,235 L420,215 L477,200 L523,211 L569,189 L614,173 L651,185 L689,163 L725,149 L761,163 L799,146 L841,159 L887,143 L943,159 L1001,143 L1059,159 L1114,169 L1171,151 L1229,171 L1287,156 L1347,173 L1440,183 L1440,300 Z"
+            fill="url(#grad-mid)"
           />
         </svg>
 
-        {/* Layer 3 — closest, darkest */}
+        {/* Layer 3 — near foothills, darkest */}
         <svg
           ref={layer3}
           className="absolute bottom-0 w-full will-change-transform"
           viewBox="0 0 1440 300"
           preserveAspectRatio="none"
-          style={{ height: "75%" }}
+          style={{ height: "72%" }}
         >
           <path
-            d="M0,300 C80,300 120,240 220,255 C320,270 380,195 500,225 C620,255 700,195 840,225 C980,255 1040,205 1180,230 C1320,255 1380,225 1440,245 L1440,300 Z"
-            fill="#0F1E26"
+            d="M0,300 L0,258 L70,252 L141,244 L214,252 L288,236 L361,243 L434,226 L507,233 L580,219 L654,226 L727,211 L801,219 L874,206 L947,213 L1021,201 L1094,209 L1168,197 L1241,206 L1315,195 L1440,205 L1440,300 Z"
+            fill="#0E1C16"
           />
         </svg>
       </div>
