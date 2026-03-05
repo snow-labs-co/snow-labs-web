@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
           Authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-          from: process.env.CONTACT_FROM || "Snow Labs <noreply@snowlabs.co>",
+          from: process.env.CONTACT_FROM || "Snow Labs <noreply@snowlabsco.com>",
           to: process.env.CONTACT_EMAIL || "snowlinelabs@gmail.com",
           subject: `Snow Labs Contact: ${name}`,
           text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,

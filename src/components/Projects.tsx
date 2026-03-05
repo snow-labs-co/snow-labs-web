@@ -21,8 +21,8 @@ const projects = [
     image: "/projects/kismet-sneak-peak.png",
   },
   {
-    name: "StatLine",
-    slug: "statline",
+    name: "StatBook",
+    slug: "statbook",
     tagline: "Play-by-play stat tracking for multi-sport teams",
     description:
       "Cross-platform stat tracker enabling coaches and statisticians to record, analyze, and export game statistics in real time. Built with a pluggable sport engine architecture supporting volleyball, baseball, and softball.",

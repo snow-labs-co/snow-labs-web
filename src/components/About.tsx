@@ -13,7 +13,7 @@ const pillars = [
     title: "Internal Lab",
     code: "INTERNAL_LAB",
     description:
-      "We don't just build for clients — we build our own ideas too, following the same rapid-prototype-iterate-ship process. Kismet, StatLine, and MyPace are all Snow Labs experiments turned real products.",
+      "We don't just build for clients — we build our own ideas too, following the same rapid-prototype-iterate-ship process. Kismet, StatBook, and MyPace are all Snow Labs experiments turned real products.",
   },
   {
     icon: "🔧",
