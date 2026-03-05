@@ -26,6 +26,10 @@ export const metadata: Metadata = {
   title: "Snow Labs — Creative Software Lab",
   description:
     "We turn ideas into reality. Rapid prototyping, software lab experimentation, and production-quality software contracting.",
+  icons: {
+    icon: "/snow-labs-logo-only.png",
+    apple: "/snow-labs-logo-only.png",
+  },
 };
 
 export default function RootLayout({
