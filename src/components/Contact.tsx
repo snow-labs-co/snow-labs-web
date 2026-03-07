@@ -113,7 +113,7 @@ export default function Contact() {
                     name="message"
                     required
                     rows={5}
-                    placeholder="Tell us about your idea..."
+                    placeholder="Tell us how you would like to work with us..."
                     className={`${inputClasses} resize-none`}
                   />
                 </div>
