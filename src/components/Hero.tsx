@@ -212,7 +212,9 @@ export default function Hero() {
         </p>
 
         <p className="font-body text-base sm:text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
-          Turning ideas into reality. We build, we experiment, we ship.
+          An idea lab for concepts born in-house and select outside submissions.
+          We prototype fast, build with feedback, and ship products we believe
+          deserve to exist.
         </p>
 
         <a

@@ -25,7 +25,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Snow Labs — Creative Software Lab",
   description:
-    "We turn ideas into reality. Rapid prototyping, software lab experimentation, and production-quality software contracting.",
+    "We turn promising ideas into products through rapid prototyping, selective idea incubation, collaborative feedback, and long-term revenue-aligned partnerships.",
   icons: {
     icon: "/snow-labs-logo-only.png",
     apple: "/snow-labs-logo-only.png",

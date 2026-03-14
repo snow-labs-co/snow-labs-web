@@ -6,28 +6,28 @@ const steps = [
     title: "Ideate",
     code: "brainstorm()",
     description:
-      "We start with your idea — whether it's a napkin sketch or a detailed spec. Through structured brainstorming sessions, we explore possibilities and define the vision together.",
+      "The best ideas can come from inside Snow Labs or from an outside submission. We stress-test the concept, explore the opportunity, and decide whether it fits the lab.",
   },
   {
     number: "02",
     title: "Prototype",
     code: "build.fast()",
     description:
-      "We move fast. Working prototypes emerge within days, not months. We leverage the best tools available — including the latest AI tooling for agentic development — to compress iteration cycles and get tangible results in your hands quickly.",
+      "Once we commit, we move fast. Working prototypes emerge within days, not months. We leverage the best tools available — including the latest AI tooling for agentic development — to compress iteration cycles and make the idea tangible quickly.",
   },
   {
     number: "03",
     title: "Iterate",
     code: "refine(feedback)",
     description:
-      "Real users, real feedback, real improvements. We iterate rapidly based on what works and what doesn't, continuously refining the experience.",
+      "Real users, real feedback, real improvements. If the product began as an external submission, the original submitter stays close to the loop while we refine what works and cut what doesn't.",
   },
   {
     number: "04",
     title: "Ship",
     code: "deploy(prod)",
     description:
-      "Production-grade code, clean architecture, comprehensive testing. We don't just prototype — we deliver software that's built to last and scale.",
+      "We ship products built to last. Snow Labs keeps the final call on roadmap, pricing, and maintenance so the product stays coherent, and accepted outside submissions participate through a fair-market revenue share agreed for the life of the project.",
   },
 ];
 
@@ -48,10 +48,9 @@ export default function Process() {
             From Concept to <span className="text-forest-300">Code</span>
           </h2>
           <p className="text-text-secondary text-lg max-w-3xl mb-16 leading-relaxed">
-            Speed matters. We prototype rapidly, iterate relentlessly, and ship
-            with confidence. We leverage the best tools available — including
-            cutting-edge AI for agentic development — to move faster at every
-            step. Every project follows this rhythm.
+            Speed matters, but selection matters too. We prototype rapidly,
+            iterate relentlessly, and ship with confidence only when an idea
+            earns it. Every product in the lab follows this rhythm.
           </p>
         </ScrollReveal>
 

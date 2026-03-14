@@ -3,24 +3,24 @@ import ScrollReveal from "./ScrollReveal";
 const pillars = [
   {
     icon: "💡",
-    title: "Idea Building",
-    code: "IDEA_BUILDING",
+    title: "Idea Intake",
+    code: "IDEA_INTAKE",
     description:
-      "We help you take a concept from napkin sketch to working prototype, facilitating structured brainstorming and rapid ideation. Whether you have a rough concept or a detailed spec, we bring the creative energy to shape your vision.",
+      "Great products can start on our whiteboard or arrive through an outside submission. We pressure-test raw concepts, sharpen the strongest ones, and decide which ideas are worth turning into real products.",
   },
   {
     icon: "🧪",
-    title: "Internal Lab",
-    code: "INTERNAL_LAB",
+    title: "Lab Portfolio",
+    code: "LAB_PORTFOLIO",
     description:
-      "We don't just build for clients — we build our own ideas too, following the same rapid-prototype-iterate-ship process. Kismet, StatBook, and MyPace are all Snow Labs experiments turned real products.",
+      "Kismet, StatBook, and MyPace reflect how Snow Labs operates: we build in-house, iterate quickly, and stay selective about what earns time, focus, and a permanent place in the lab.",
   },
   {
     icon: "🔧",
-    title: "Software Contracting",
-    code: "CONTRACTING",
+    title: "Revenue-Aligned Builds",
+    code: "REV_SHARE",
     description:
-      "We deliver production-ready software for clients, with a focus on clean architecture, maintainability, and results. From mobile apps to full-stack web platforms, we build software that lasts.",
+      "When we accept an external idea, the original submitter stays close to the feedback loop while Snow Labs keeps final authority over features, pricing, and maintenance. Every accepted submission includes an agreed fair-market revenue share for the life of the project.",
   },
 ];
 
@@ -43,12 +43,15 @@ export default function About() {
             Become <span className="text-forest-300">Reality</span>
           </h2>
           <p className="text-text-secondary text-lg max-w-3xl mb-16 leading-relaxed">
-            Snow Labs is a creative software lab dedicated to turning ideas into
-            reality. We build for clients — and we build for ourselves. Every
-            internal product we&apos;ve shipped started as a rough idea run through
-            the same rapid-prototype-iterate-ship process we bring to every
-            engagement. As a software contractor we partner with organizations
-            to deliver high-quality, custom software on a project basis.
+            Snow Labs is an idea lab dedicated to turning promising concepts into
+            real products. Some start inside the company. Others come from
+            outside submitters whose ideas we choose to build. In every case we
+            brainstorm hard, prototype fast, gather feedback, and ship with
+            intention. When we take on an external submission, the submitter
+            stays involved in the feedback process, while Snow Labs retains
+            final say on features, pricing, and long-term maintenance. Accepted
+            submissions always include an agreed fair-market share of project
+            revenue for the lifetime of the product.
           </p>
         </ScrollReveal>
 

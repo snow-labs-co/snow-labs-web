@@ -75,9 +75,10 @@ export default function Projects() {
             Built in the <span className="text-ice-400">Lab</span>
           </h2>
           <p className="text-text-secondary text-lg max-w-3xl mb-16 leading-relaxed">
-            These aren&apos;t client projects — they&apos;re our own ideas, built in-house
-            using the same process we bring to every engagement: prototype fast,
-            get real feedback, iterate hard, ship clean.
+            These are products Snow Labs chose to build in-house, whether the
+            spark started internally or came from a submission we believed in.
+            We prototype fast, get real feedback, iterate hard, and commit only
+            to the ideas that earn a place in the lab.
           </p>
         </ScrollReveal>
 

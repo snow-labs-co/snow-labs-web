@@ -45,10 +45,14 @@ export default function Contact() {
         <ScrollReveal>
           <p className="terminal-header mb-3">{"> contact"}</p>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-ice-50 mb-4">
-            Start a <span className="text-forest-300">Conversation</span>
+            Submit an <span className="text-forest-300">Idea</span>
           </h2>
           <p className="text-text-secondary text-lg mb-12 leading-relaxed">
-            Have an idea? Let&apos;s talk about how we can bring it to life.
+            Have an idea that belongs in the lab? Send it our way. If Snow Labs
+            decides to build it, you&apos;ll stay involved through the feedback
+            process, you&apos;ll have a fair-market revenue share agreed up front,
+            and Snow Labs will keep final authority on features, pricing, and
+            maintenance.
           </p>
         </ScrollReveal>
 
@@ -75,11 +79,21 @@ export default function Contact() {
                   Message Sent
                 </h3>
                 <p className="text-text-secondary">
-                  We&apos;ll get back to you soon.
+                  Thanks for the submission. If it feels like a fit for the lab,
+                  we&apos;ll reach out to talk through next steps.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="rounded-lg border border-card-border/60 bg-midnight/35 px-4 py-3">
+                  <p className="text-text-secondary text-sm leading-relaxed">
+                    Accepted submissions become Snow Labs products. We welcome
+                    close feedback from the original submitter, but roadmap,
+                    pricing, and maintenance decisions stay with Snow Labs so
+                    the product can remain focused and sustainable.
+                  </p>
+                </div>
+
                 <div>
                   <label className="font-mono text-[10px] text-text-muted tracking-[0.15em] mb-2 block">
                     NAME
@@ -113,7 +127,7 @@ export default function Contact() {
                     name="message"
                     required
                     rows={5}
-                    placeholder="Tell us how you would like to work with us..."
+                    placeholder="Tell us the idea, who it helps, and why it deserves to exist."
                     className={`${inputClasses} resize-none`}
                   />
                 </div>
