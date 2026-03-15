@@ -1,25 +1,21 @@
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 
-const projects = [
-  {
-    name: "Kismet Coffee Roasters",
-    slug: "kismet",
-    tagline: "A complete e-commerce experience for specialty coffee",
-    description:
-      "Custom-built headless e-commerce platform replacing a legacy Square Online store. Features real-time inventory, subscription management, secure card payments, and a mobile-first design that captures the warmth of the Kismet brand.",
-    approach:
-      "Rapid prototype of the storefront in under two weeks, iterated on checkout UX with real barista feedback, and shipped a production site that outperforms the original in every metric.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Square API", "Vercel"],
-    highlights: [
-      "Headless Square integration",
-      "Subscription management",
-      "Real-time inventory",
-      "Mobile-first responsive",
-    ],
-    color: "#D4956A",
-    image: "/projects/kismet-sneak-peak.png",
-  },
+type Project = {
+  name: string;
+  slug: string;
+  tagline: string;
+  description: string;
+  approach: string;
+  tech: string[];
+  highlights: string[];
+  color: string;
+  image?: string;
+  stage?: string;
+  progress?: string[];
+};
+
+const projects: Project[] = [
   {
     name: "StatBook",
     slug: "statbook",
@@ -56,6 +52,30 @@ const projects = [
     color: "#34D399",
     image: "/projects/mypace-sneak-peak.png",
   },
+  {
+    name: "Trust Us",
+    slug: "trust-us",
+    tagline: "Tiered agent-to-agent security platform in active design",
+    description:
+      "Trust Us is an in-progress platform for secure agent-to-agent communication built around Google's A2A protocol. Current work is focused on the Level 1 MVP: defining the registry, API-key handshake flow, and package architecture before implementation starts.",
+    approach:
+      "The project has moved beyond brainstorming into concrete system design. The MVP scope is locked, the tiered business model is mapped, and the diagrams and package boundaries are ready for the first Node + TypeScript implementation pass.",
+    tech: ["Node.js", "TypeScript", "Express 5", "Vitest", "@a2a-js/sdk"],
+    highlights: [
+      "Level 1 MVP scoped",
+      "Registry API mapped",
+      "Handshake flow diagrammed",
+      "L2/L3 hooks planned",
+    ],
+    color: "#F59E0B",
+    stage: "Planning + system design",
+    progress: [
+      "Level 1 MVP defined around registry + API-key handshake",
+      "4 architecture diagrams completed for the core flows",
+      "SDK/server workspace structure planned in detail",
+      "Paid L2/L3 security tiers designed as future hooks",
+    ],
+  },
 ];
 
 export default function Projects() {
@@ -75,10 +95,10 @@ export default function Projects() {
             Built in the <span className="text-ice-400">Lab</span>
           </h2>
           <p className="text-text-secondary text-lg max-w-3xl mb-16 leading-relaxed">
-            These are products Snow Labs chose to build in-house, whether the
-            spark started internally or came from a submission we believed in.
-            We prototype fast, get real feedback, iterate hard, and commit only
-            to the ideas that earn a place in the lab.
+            These are ideas Snow Labs chose to pursue in-house, from live
+            products to active builds still taking shape. We prototype fast, get
+            real feedback, iterate hard, and commit only to the ideas that earn
+            a place in the lab.
           </p>
         </ScrollReveal>
 
@@ -92,27 +112,73 @@ export default function Projects() {
               >
                 {/* Image area */}
                 <div className="md:w-[45%] relative overflow-hidden bg-card-surface/50">
-                  <div
-                    className="aspect-[16/10] relative overflow-hidden"
-                    style={{
-                      background: `linear-gradient(135deg, ${project.color}06, ${project.color}03)`,
-                    }}
-                  >
-                    <Image
-                      src={project.image}
-                      alt={`${project.name} screenshot`}
-                      fill
-                      className="object-contain object-top p-3"
-                      sizes="(max-width: 768px) 100vw, 45vw"
-                    />
-                    {/* Subtle color-matched overlay at bottom for blending */}
+                  {project.image ? (
                     <div
-                      className="absolute inset-x-0 bottom-0 h-8 pointer-events-none"
+                      className="aspect-[16/10] relative overflow-hidden"
                       style={{
-                        background: `linear-gradient(to top, ${project.color}12, transparent)`,
+                        background: `linear-gradient(135deg, ${project.color}06, ${project.color}03)`,
                       }}
-                    />
-                  </div>
+                    >
+                      <Image
+                        src={project.image}
+                        alt={`${project.name} screenshot`}
+                        fill
+                        className="object-contain object-top p-3"
+                        sizes="(max-width: 768px) 100vw, 45vw"
+                      />
+                      <div
+                        className="absolute inset-x-0 bottom-0 h-8 pointer-events-none"
+                        style={{
+                          background: `linear-gradient(to top, ${project.color}12, transparent)`,
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="aspect-[16/10] relative overflow-hidden p-6 md:p-8"
+                      style={{
+                        background: `linear-gradient(135deg, ${project.color}12, ${project.color}04)`,
+                      }}
+                    >
+                      <div
+                        className="absolute inset-0 pointer-events-none"
+                        style={{
+                          background: `radial-gradient(circle at top right, ${project.color}18, transparent 55%)`,
+                        }}
+                      />
+                      <div className="relative h-full rounded-2xl border border-white/8 bg-midnight/45 p-5 md:p-6 flex flex-col">
+                        <p
+                          className="font-mono text-[10px] tracking-[0.18em] uppercase"
+                          style={{ color: `${project.color}CC` }}
+                        >
+                          Current Progress
+                        </p>
+                        <h4 className="font-display text-2xl text-ice-50 mt-3">
+                          {project.stage}
+                        </h4>
+                        <div
+                          className="mt-4 h-px"
+                          style={{
+                            background: `linear-gradient(90deg, ${project.color}50, transparent)`,
+                          }}
+                        />
+                        <ul className="mt-5 space-y-3">
+                          {project.progress?.map((item) => (
+                            <li key={item} className="flex gap-3 text-sm text-text-secondary">
+                              <span
+                                className="mt-1.5 h-1.5 w-1.5 rounded-full shrink-0"
+                                style={{ backgroundColor: project.color }}
+                              />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <p className="mt-auto pt-5 font-mono text-[10px] tracking-[0.14em] text-text-muted uppercase">
+                          trust-us // lab status snapshot
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Content */}

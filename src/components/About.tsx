@@ -13,7 +13,7 @@ const pillars = [
     title: "Lab Portfolio",
     code: "LAB_PORTFOLIO",
     description:
-      "Kismet, StatBook, and MyPace reflect how Snow Labs operates: we build in-house, iterate quickly, and stay selective about what earns time, focus, and a permanent place in the lab.",
+      "StatBook, MyPace, and in-progress builds like Trust Us reflect how Snow Labs operates: we build in-house, iterate quickly, and stay selective about what earns time, focus, and a permanent place in the lab.",
   },
   {
     icon: "🔧",
